@@ -4,19 +4,26 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 
-require_once __DIR__.'/users/usersService.class.php';
+require_once 'customers/CustomerService.class.php';
+require_once 'vehicles/VehicleService.class.php';
+require_once 'services/ServiceService.class.php';
+require_once 'servicetypes/ServiceTypeService.class.php';
 
-Flight::register('usersService','UsersService');
+
+Flight::register('customerService','CustomerService');
+Flight::register('serviceService','ServiceService');
+Flight::register('serviceTypeService','ServiceTypeService');
+Flight::register('vehicleService','VehicleService');
+
 
 
 
 
 
 Flight::route('/', function(){
-    echo 'hello world!';
+    Flight::json(Flight::customerService()->select_all());
 });
 
-require_once __DIR__ .'/users/usersRoutes.class.php';
 
 Flight::start();
 ?>
