@@ -15,6 +15,10 @@ Flight::register('serviceService','ServiceService');
 Flight::register('serviceTypeService','ServiceTypeService');
 Flight::register('vehicleService','VehicleService');
 
+require_once __DIR__.'/customers/CustomerRoutes.php';
+require_once __DIR__.'/services/ServiceRoutes.php';
+require_once __DIR__.'/servicetypes/ServiceTypeRoutes.php';
+require_once __DIR__.'/vehicles/VehicleRoutes.php';
 
 
 

@@ -1,4 +1,18 @@
+/*
+ Navicat Premium Data Transfer
 
+ Source Server         : WebProgrammer
+ Source Server Type    : MySQL
+ Source Server Version : 50734
+ Source Host           : localhost:3306
+ Source Schema         : carservice
+
+ Target Server Type    : MySQL
+ Target Server Version : 50734
+ File Encoding         : 65001
+
+ Date: 01/06/2023 09:35:18
+*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -8,15 +22,15 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `customers`;
 CREATE TABLE `customers`  (
-  `CustomerID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `LastName` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Email` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `Phone` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Address` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`CustomerID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of customers
@@ -37,16 +51,16 @@ INSERT INTO `customers` VALUES (10, 'Laura', 'Clark', 'lauraclark@example.com', 
 -- ----------------------------
 DROP TABLE IF EXISTS `services`;
 CREATE TABLE `services`  (
-  `ServiceID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `VehicleID` int(11) NULL DEFAULT NULL,
   `ServiceDate` date NULL DEFAULT NULL,
   `serviceTypeId` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`ServiceID`) USING BTREE,
+  PRIMARY KEY (`id`) USING BTREE,
   INDEX `VehicleID`(`VehicleID`) USING BTREE,
   INDEX `serviceTypeId`(`serviceTypeId`) USING BTREE,
-  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`VehicleID`) REFERENCES `vehicles` (`VehicleID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `services_ibfk_2` FOREIGN KEY (`serviceTypeId`) REFERENCES `servicetypes` (`serviceTypeId`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  CONSTRAINT `services_ibfk_1` FOREIGN KEY (`VehicleID`) REFERENCES `vehicles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `services_ibfk_2` FOREIGN KEY (`serviceTypeId`) REFERENCES `servicetypes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of services
@@ -67,12 +81,12 @@ INSERT INTO `services` VALUES (10, 9, '2023-05-08', 4);
 -- ----------------------------
 DROP TABLE IF EXISTS `servicetypes`;
 CREATE TABLE `servicetypes`  (
-  `serviceTypeId` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `serviceName` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `serviceDescription` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `serviceCost` int(11) NULL DEFAULT NULL,
-  PRIMARY KEY (`serviceTypeId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of servicetypes
@@ -93,17 +107,17 @@ INSERT INTO `servicetypes` VALUES (10, 'Diagnostic Service', 'Troubleshooting an
 -- ----------------------------
 DROP TABLE IF EXISTS `vehicles`;
 CREATE TABLE `vehicles`  (
-  `VehicleID` int(11) NOT NULL AUTO_INCREMENT,
-  `CustomerID` int(11) NULL DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `CustomerId` int(11) NULL DEFAULT NULL,
   `Make` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Model` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `Year` int(11) NULL DEFAULT NULL,
   `VIN` varchar(17) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `LicensePlate` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`VehicleID`) USING BTREE,
-  INDEX `CustomerID`(`CustomerID`) USING BTREE,
-  CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `customers` (`CustomerID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `CustomerId`(`CustomerId`) USING BTREE,
+  CONSTRAINT `vehicles_ibfk_1` FOREIGN KEY (`CustomerId`) REFERENCES `customers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of vehicles
