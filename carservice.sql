@@ -1,6 +1,26 @@
-
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for appointments
+-- ----------------------------
+DROP TABLE IF EXISTS `appointments`;
+CREATE TABLE `appointments`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) NULL DEFAULT NULL,
+  `vehicle_id` int(11) NULL DEFAULT NULL,
+  `appointment_date` datetime(0) NULL DEFAULT NULL,
+  `service_type_id` int(11) NULL DEFAULT NULL,
+  `notes` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of appointments
+-- ----------------------------
+INSERT INTO `appointments` VALUES (1, 1, 1, '2023-06-01 10:00:00', 1, 'Oil change and filter replacement');
+INSERT INTO `appointments` VALUES (2, 2, 3, '2023-06-02 14:30:00', 3, 'Brake inspection and maintenance');
+INSERT INTO `appointments` VALUES (3, 4, 5, '2023-06-03 09:15:00', 6, 'Battery replacement and inspection');
 
 -- ----------------------------
 -- Table structure for customers
@@ -30,6 +50,62 @@ INSERT INTO `customers` VALUES (7, 'Robert', 'Anderson', 'robertanderson@example
 INSERT INTO `customers` VALUES (8, 'Emily', 'Davis', 'emilydavis@example.com', 'ab8226', '4444444444', '369 Spruce Ave');
 INSERT INTO `customers` VALUES (9, 'Michael', 'Thomas', 'michaelthomas@example.com', 'c83ce8', '2222222222', '852 Oakwood Dr');
 INSERT INTO `customers` VALUES (10, 'Laura', 'Clark', 'lauraclark@example.com', '6a5e10', '6666666666', '963 Elmwood St');
+
+-- ----------------------------
+-- Table structure for orders
+-- ----------------------------
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE `orders`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `part_id` int(11) NULL DEFAULT NULL,
+  `customer_id` int(11) NULL DEFAULT NULL,
+  `quantity` int(11) NULL DEFAULT NULL,
+  `order_date` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of orders
+-- ----------------------------
+INSERT INTO `orders` VALUES (1, 1, 1, 2, '2023-05-01');
+INSERT INTO `orders` VALUES (2, 3, 2, 1, '2023-05-10');
+
+-- ----------------------------
+-- Table structure for parts
+-- ----------------------------
+DROP TABLE IF EXISTS `parts`;
+CREATE TABLE `parts`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `description` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `price` decimal(10, 2) NOT NULL,
+  `photo_link` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of parts
+-- ----------------------------
+INSERT INTO `parts` VALUES (1, 'Spark Plug', 'High-quality spark plug for improved ignition', 9.99, 'spark_plug.jpg');
+INSERT INTO `parts` VALUES (2, 'Air Filter', 'Engine air filter for clean airflow', 19.99, 'air_filter.jpg');
+INSERT INTO `parts` VALUES (3, 'Brake Pad Set', 'Durable brake pads for efficient braking', 49.99, 'brake_pad_set.jpg');
+INSERT INTO `parts` VALUES (4, 'Oil Filter', 'Premium oil filter for effective filtration', 12.99, 'oil_filter.jpg');
+INSERT INTO `parts` VALUES (5, 'Timing Belt', 'Timing belt for precise engine timing', 39.99, 'timing_belt.jpg');
+INSERT INTO `parts` VALUES (6, 'Battery', 'Reliable car battery for consistent performance', 99.99, 'battery.jpg');
+INSERT INTO `parts` VALUES (7, 'Radiator', 'High-quality radiator for engine cooling', 79.99, 'radiator.jpg');
+INSERT INTO `parts` VALUES (8, 'Alternator', 'Efficient alternator for charging the battery', 129.99, 'alternator.jpg');
+INSERT INTO `parts` VALUES (9, 'Tire', 'Durable tire for excellent traction and stability', 79.99, 'tire.jpg');
+INSERT INTO `parts` VALUES (10, 'Shock Absorber', 'Shock absorber for smooth and comfortable ride', 59.99, 'shock_absorber.jpg');
+INSERT INTO `parts` VALUES (11, 'Starter Motor', 'Reliable starter motor for quick engine startup', 89.99, 'starter_motor.jpg');
+INSERT INTO `parts` VALUES (12, 'Water Pump', 'Efficient water pump for engine cooling', 69.99, 'water_pump.jpg');
+INSERT INTO `parts` VALUES (13, 'Fuel Pump', 'High-performance fuel pump for optimal fuel delivery', 49.99, 'fuel_pump.jpg');
+INSERT INTO `parts` VALUES (14, 'Ignition Coil', 'Ignition coil for reliable spark generation', 29.99, 'ignition_coil.jpg');
+INSERT INTO `parts` VALUES (15, 'Oxygen Sensor', 'Oxygen sensor for accurate air-fuel mixture control', 39.99, 'oxygen_sensor.jpg');
+INSERT INTO `parts` VALUES (16, 'Power Steering Pump', 'Power steering pump for effortless steering', 99.99, 'power_steering_pump.jpg');
+INSERT INTO `parts` VALUES (17, 'Wheel Bearing', 'Wheel bearing for smooth wheel rotation', 29.99, 'wheel_bearing.jpg');
+INSERT INTO `parts` VALUES (18, 'Cabin Air Filter', 'Air filter for clean and fresh cabin air', 24.99, 'cabin_air_filter.jpg');
+INSERT INTO `parts` VALUES (19, 'Control Arm', 'Control arm for precise suspension control', 69.99, 'control_arm.jpg');
+INSERT INTO `parts` VALUES (20, 'Exhaust Manifold', 'Exhaust manifold for efficient exhaust flow', 79.99, 'exhaust_manifold.jpg');
 
 -- ----------------------------
 -- Table structure for services
