@@ -5,8 +5,6 @@ error_reporting(E_ALL);
 require_once __DIR__.'/Config.class.php';
 class BaseDao
 {
-
-
   protected $connection;
   protected $dbname = "systeminformationsystem";
   private $table;
@@ -76,7 +74,7 @@ class BaseDao
       $query .= $name ."= :". $name. ", ";
     }
     $query = substr($query, 0, -2);
-    $query .= " WHERE ${id_column} = :id";
+    $query .= " WHERE {$id_column} = :id";
 
     $stmt= $this->connection->prepare($query);
     $entity['id'] = $id;
