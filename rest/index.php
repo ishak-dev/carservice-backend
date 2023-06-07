@@ -5,10 +5,24 @@ ini_set('display_startup_errors',1);
 error_reporting(E_ALL);
 
 
+$requestMethod = $_SERVER['REQUEST_METHOD'];
+
+// Is this a pre-flight request (the request method is OPTIONS)? Then start output buffering.
+if ($requestMethod === 'OPTIONS') {
+    ob_start();
+}
+
+// Allow for all origins and credentials. Also allow GET, POST, PATCH, and OPTIONS request verbs
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Methods: HEAD, GET, POST, PUT, PATCH, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method,Access-Control-Request-Headers, Authorization");
-header('Content-Type: application/json');
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+header('Access-Control-Allow-Methods: GET, POST, PATCH, OPTIONS, DELETE');
+
+// If this is a pre-flight request (the request method is OPTIONS)? Then flush the output buffer and exit.
+if ($requestMethod === 'OPTIONS') {
+    ob_end_flush();
+    exit();
+}
 
 require_once 'customers/CustomerService.class.php';
 require_once 'vehicles/VehicleService.class.php';
@@ -35,7 +49,6 @@ require_once __DIR__.'/vehicles/VehicleRoutes.php';
 require_once __DIR__.'/orders/OrderRoutes.php';
 require_once __DIR__.'/appointments/AppointmentRoutes.php';
 require_once __DIR__.'/parts/PartRoutes.php';
-
 
 
 

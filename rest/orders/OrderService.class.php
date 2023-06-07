@@ -9,6 +9,8 @@ class OrderService extends BaseService{
   public function __construct(){
     parent::__construct(new OrderDao());
   }
-
+  public function select_by_customer_id($id){
+    return $this->dao->select_by_customer_id($id);
+  }
 }
 ?>

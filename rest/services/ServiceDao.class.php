@@ -11,5 +11,9 @@ class ServiceDao extends BaseDao
   {
     parent::__construct("services");
   }
+
+  public function select_by_user_id($id){
+    return $this->query("SELECT * FROM services WHERE VehicleID = :id",["id"=>$id]);
+  }
 }
 ?>

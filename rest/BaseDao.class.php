@@ -3,6 +3,14 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require_once __DIR__.'/Config.class.php';
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+header('Access-Control-Allow-Headers: token, Content-Type');
+header('Access-Control-Max-Age: 1728000');
+header('Content-Length: 0');
+header('Content-Type: text/plain');
+
 class BaseDao
 {
   protected $connection;

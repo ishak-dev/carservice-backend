@@ -11,5 +11,11 @@ class OrderDao extends BaseDao
   {
     parent::__construct("orders");
   }
+
+  public function select_by_customer_id($id){
+    return $this->query("SELECT * FROM orders WHERE customer_id = :id",["id"=>$id]);
+  }
+
+
 }
 ?>
