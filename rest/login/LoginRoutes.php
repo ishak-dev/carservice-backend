@@ -5,14 +5,14 @@ use Firebase\JWT\Key;
 
 //Check login
 
-Flight::route("POST /login",function(){
+Flight::route("POST /userLogin",function(){
   $data = Flight::request()->data->getData();
   //Flight::json(Flight::userLoginService()->getUserByEmail($data));
 
   $user = Flight::userLoginDao()->getUserByEmail($data['email']);
 
   if(isset($user['id'])){
-    if($user['password'] == md5($data['password'])){
+    if($user['password'] == $data['password']){
       unset($user['password']);
       $jwt = JWT::encode($user, 'example_key', 'HS256');
       Flight::json(["token"=>$jwt]);
@@ -21,7 +21,7 @@ Flight::route("POST /login",function(){
 
     }
   }else{
-    Flight::json(["message"=>"User is bad"],404);
+    Flight::json(["message"=>"Email or Password wrong"],404);
   }
 
 });

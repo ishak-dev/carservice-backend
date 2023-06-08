@@ -7,6 +7,7 @@ require_once 'vehicles/VehicleService.class.php';
 require_once 'appointments/AppointmentService.class.php';
 require_once 'orders/OrderService.class.php';
 require_once 'parts/PartService.class.php';
+require_once 'login/LoginDao.class.php';
 
 class BackendFacade {
     public static function registerServices() {
@@ -17,6 +18,7 @@ class BackendFacade {
         Flight::register('appointmentService', 'AppointmentService');
         Flight::register('orderService', 'OrderService');
         Flight::register('partService', 'PartService');
+        Flight::register('userLoginDao', 'UserLoginDao');
     }
 
     public static function defineRoutes() {
@@ -28,5 +30,6 @@ class BackendFacade {
         require_once __DIR__.'/orders/OrderRoutes.php';
         require_once __DIR__.'/appointments/AppointmentRoutes.php';
         require_once __DIR__.'/parts/PartRoutes.php';
+        require_once __DIR__.'/login/LoginRoutes.php';
     }
 }
