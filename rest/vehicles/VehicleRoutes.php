@@ -6,7 +6,9 @@ Flight::route('GET /vehicle', function(){
   Flight::route('GET /vehicle/@id', function($id){
     Flight::json(Flight::vehicleService()->select_by_id($id));
   });
-  
+  Flight::route('GET /vehicle/user/@id', function($id){
+    Flight::json(Flight::vehicleService()->select_by_customer_id($id));
+  });
   Flight::route('POST /vehicle', function(){
     Flight::json(Flight::vehicleService()->add(Flight::request()->data->getData()));
   });

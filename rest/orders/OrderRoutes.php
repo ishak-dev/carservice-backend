@@ -15,14 +15,15 @@ Flight::route('GET /order/@id', function($id){
   Flight::json(Flight::orderService()->select_by_id($id));
 });
 
-Flight::route('GET /orders/@id', function($id){
+Flight::route('GET /orders/user', function(){
+  $id = Flight::get('user')['id'];
+
   Flight::json(Flight::orderService()->select_by_customer_id($id));
 });
 
 Flight::route('POST /order', function(){
-
   $data = Flight::request()->data->getData();
-  
+  $data["customer_id"] = Flight::get('user')["id"];
   Flight::json(Flight::orderService()->add($data));
 });
 

@@ -11,5 +11,8 @@ class VehicleDao extends BaseDao
   {
     parent::__construct("vehicles");
   }
+  public function select_by_customer_id($id){
+    return $this->query("SELECT * FROM vehicles WHERE CustomerId = :id",["id"=>$id]);
+  }
 }
 ?>
