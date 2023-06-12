@@ -6,12 +6,12 @@ Flight::route('GET /service', function(){
 Flight::route('GET /service/@id', function($id){
   Flight::json(Flight::serviceService()->select_by_id($id));
 });
-Flight::route('GET /serviceByUser/@id', function($id){
-  Flight::json(Flight::serviceService()->select_by_user_id($id));
+Flight::route('GET /serviceByUser', function(){
+  Flight::json(Flight::serviceService()->select_by_user_id());
 });
 
 Flight::route('POST /service', function(){
-  Flight::json(Flight::serviceService()->add(Flight::request()->data->getData()));
+  Flight::json(Flight::serviceService()->addService(Flight::request()->data->getData()));
 });
 
 Flight::route('DELETE /service/@id', function($id){
