@@ -9,6 +9,7 @@ class AppointmentService extends BaseService{
   public function __construct(){
     parent::__construct(new AppointmentDao());
   }
+ 
 
 }
 ?>
