@@ -11,5 +11,6 @@ class AppointmentDao extends BaseDao
   {
     parent::__construct("appointments");
   }
+
 }
 ?>
