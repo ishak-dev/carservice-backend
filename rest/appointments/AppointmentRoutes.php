@@ -11,6 +11,7 @@ Flight::route('POST /appointment', function(){
   Flight::json(Flight::appointmentService()->add(Flight::request()->data->getData()));
 });
 
+
 Flight::route('DELETE /appointment/@id', function($id){
   Flight::appointmentService()->delete($id);
   Flight::json(["message" => "deleted"]);
