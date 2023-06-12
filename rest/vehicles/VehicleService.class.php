@@ -9,8 +9,8 @@ class VehicleService extends BaseService{
   public function __construct(){
     parent::__construct(new VehicleDao());
   }
-  public function select_by_customer_id($id){
-    return $this->dao->select_by_customer_id($id);
+  public function select_by_customer_id(){
+    return $this->dao->select_by_customer_id(Flight::get('user')["id"]);
   }
 
 }
