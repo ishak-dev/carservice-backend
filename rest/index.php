@@ -21,7 +21,7 @@ if ($requestMethod === 'OPTIONS') {
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization');
-header('Access-Control-Allow-Methods: GET, POST, PATCH, OPTIONS, DELETE');
+header('Access-Control-Allow-Methods: GET,PUT, POST, PATCH, OPTIONS, DELETE');
 
 // If this is a pre-flight request (the request method is OPTIONS)? Then flush the output buffer and exit.
 if ($requestMethod === 'OPTIONS') {
