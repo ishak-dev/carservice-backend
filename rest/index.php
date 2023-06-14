@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 
-/* // Is this a pre-flight request (the request method is OPTIONS)? Then start output buffering.
+// Is this a pre-flight request (the request method is OPTIONS)? Then start output buffering.
 if ($requestMethod === 'OPTIONS') {
     ob_start();
 }
@@ -27,7 +27,7 @@ header('Access-Control-Allow-Methods: GET,PUT, POST, PATCH, OPTIONS, DELETE');
 if ($requestMethod === 'OPTIONS') {
     ob_end_flush();
     exit();
-} */
+}
 
 //middleware method for login
 Flight::route('/*',function(){
