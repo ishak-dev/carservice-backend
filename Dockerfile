@@ -21,7 +21,7 @@ RUN docker-php-ext-install \
 RUN a2enmod rewrite
 
 # Copy the application code into the container
-COPY .
+COPY ./
 
 # Expose port 80
 EXPOSE 80
