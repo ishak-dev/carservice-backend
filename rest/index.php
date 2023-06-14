@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ ."/../vendor/autoload.php";
-require_once 'facade.php';
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 ini_set('display_errors', 1);
@@ -28,7 +28,7 @@ if ($requestMethod === 'OPTIONS') {
     ob_end_flush();
     exit();
 }
-
+require_once 'facade.php';
 //middleware method for login
 Flight::route('/*',function(){
     //perform JWT decode
