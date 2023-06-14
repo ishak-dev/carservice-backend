@@ -33,7 +33,7 @@ require_once 'facade.php';
 Flight::route('/*',function(){
     //perform JWT decode
     $path = Flight::request()->url;
-    if($path =='/userLogin') return TRUE;   //exclude login route from middleware
+    if($path =='/userLogin' || $path =='/test' ) return TRUE;   //exclude login route from middleware
     $headers = getallheaders();
     
     if(@!$headers['Authorization']){
@@ -59,7 +59,7 @@ $facade->registerServices();
 $facade->defineRoutes();
 
 
-Flight::route('/', function(){
+Flight::route('/test', function(){
     Flight::json(Flight::customerService()->select_all());
 });
 
