@@ -1,31 +1,18 @@
 # Use an official PHP runtime as the base image
-FROM php:8.0-apache
+FROM php:7.4-apache
 
-# Set the working directory inside the container
-WORKDIR /
+# Set the working directory in the container
+WORKDIR /var/www/html
 
-# Install necessary dependencies
-RUN apt-get update && apt-get install -y \
-    libmcrypt-dev \
-    libxml2-dev \
-    zlib1g-dev \
-    && rm -rf /var/lib/apt/lists/*
+# Copy the application code to the working directory
+COPY . /var/www/html
 
-# Install PHP extensions
-RUN docker-php-ext-install \
-    mysqli \
-    pdo_mysql \
-    xml
-
-# Enable Apache modules
+# Install PHP dependencies
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN a2enmod rewrite
 
-# Copy the application code into the container
-COPY . /
-
-
-# Expose port 80
+# Expose the port the application will run on
 EXPOSE 80
 
-# Start Apache server
+# Start the Apache web server
 CMD ["apache2-foreground"]
