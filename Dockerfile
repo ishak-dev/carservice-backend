@@ -2,7 +2,7 @@
 FROM php:8.0-apache
 
 # Set the working directory inside the container
-WORKDIR ./
+WORKDIR /
 
 # Install necessary dependencies
 RUN apt-get update && apt-get install -y \
@@ -21,7 +21,8 @@ RUN docker-php-ext-install \
 RUN a2enmod rewrite
 
 # Copy the application code into the container
-COPY ./
+COPY . /
+
 
 # Expose port 80
 EXPOSE 80
