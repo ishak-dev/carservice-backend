@@ -23,9 +23,6 @@ RUN a2enmod rewrite
 # Copy the application code into the container
 COPY . /rest
 
-# Set up Apache virtual host configuration
-COPY apache.conf /etc/apache2/sites-available/000-default.conf
-
 # Expose port 80
 EXPOSE 80
 
