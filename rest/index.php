@@ -27,6 +27,8 @@ if ($requestMethod === 'OPTIONS') {
     exit();
 }
 require_once 'facade.php';
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 //middleware method for login
 Flight::route('/*',function(){
     //perform JWT decode
