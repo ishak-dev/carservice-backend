@@ -1,4 +1,6 @@
 <?php
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 // Import necessary classes
 require_once 'customers/CustomerService.class.php';
 require_once 'services/ServiceService.class.php';
