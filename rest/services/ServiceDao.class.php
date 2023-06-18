@@ -20,7 +20,7 @@ class ServiceDao extends BaseDao
     $stmt->bindParam(":id",$id);
     $stmt->execute();
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $result['id'];
+    return $result != [] ? $result['id'] : [];
   }
 }
 ?>
