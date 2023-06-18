@@ -33,7 +33,7 @@ use Firebase\JWT\Key;
 Flight::route('/*',function(){
     //perform JWT decode
     $path = Flight::request()->url;
-    if($path =='/userLogin' || $path =='/test' ) return TRUE;   //exclude login route from middleware
+    if($path =='/userLogin' || $path =='/test' || $path =='/addCustomer' ) return TRUE;   //exclude login route from middleware
     $headers = getallheaders();
     
     if(@!$headers['Authorization']){

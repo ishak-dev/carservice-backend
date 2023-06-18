@@ -8,7 +8,7 @@ Flight::route('GET /customer/@id', function($id){
   Flight::json(Flight::customerService()->select_by_id($id));
 });
 
-Flight::route('POST /customer', function(){
+Flight::route('POST /addCustomer', function(){
   Flight::json(Flight::customerService()->add(Flight::request()->data->getData()));
 });
 
